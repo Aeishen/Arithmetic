@@ -49,3 +49,4 @@ func InitStack() *ItemStack{
 	}
 	return &this
 }
+
