@@ -12,18 +12,24 @@ import (
 )
 
 func main() {
-	b := Tree.NewMyBintree()
-	b.CompareBig = func(data1 Tree.Object, data2 Tree.Object) bool {
+	b := Tree.NewMyBintree(11)
+	b.CompareBig = func(data1 Tree.Object, data2 Tree.Object) int {
 		if data1.(int) >  data2.(int){
-			return true
+			return 1
+		}else if data1.(int) <  data2.(int){
+			return -1
+		}else{
+			return 0
 		}
-		return false
 	}
 
 	b.Add(10)
 	fmt.Println(b.Size,b.Root)
 
 	b.Add(15)
+	fmt.Println(b.Size,b.Root)
+
+	b.Add(5)
 	fmt.Println(b.Size,b.Root)
 
 	b.Add(19)
@@ -37,17 +43,48 @@ func main() {
 
 	b.Add(9)
 	fmt.Println(b.Size,b.Root)
+	fmt.Println("获取树的所有元素的值（前序）：",b.PreorderTraversal())
+	fmt.Println("获取树的所有元素的值（中序）：",b.InorderTraversal())
+	fmt.Println("获取树的所有元素的值（后序）：",b.PostorderTraversal())
+	fmt.Println("获取树的最大值结点",b.GetTreeMaxNode())
+	fmt.Println("获取树的最小值结点",b.GetTreeMinNode())
+
+	fmt.Println("查询111是否存在于树中：",b.Search(111))
+	fmt.Println("查询15是否存在于树中：",b.Search(15))
 
 
-	a := b.Search(111)
-	fmt.Println(a)
+	if b.Delete(4){
+		fmt.Println("删除4后获取树的最小值结点",b.GetTreeMinNode())
+		fmt.Println("删除4后获取树的size",b.Size)
+		fmt.Println("删除4后获取树的所有元素的值（中序）：",b.InorderTraversal())
+	}else {
+		fmt.Println("树中不存在4")
+	}
 
-	a = b.Search(15)
-	fmt.Println(a)
+	if b.Delete(15){
+		fmt.Println("删除15后获取树的最小值结点",b.GetTreeMinNode())
+		fmt.Println("删除15后获取树的size",b.Size)
+		fmt.Println("删除15后获取树的所有元素的值（中序）：",b.InorderTraversal())
+	}else {
+		fmt.Println("树中不存在15")
+	}
 
-	fmt.Println(b.GetMinNode())
-	fmt.Println(b.GetMaxNode())
+	if b.Delete(19){
+		fmt.Println("删除19后获取树的最大值结点",b.GetTreeMaxNode())
+		fmt.Println("删除19后获取树的size",b.Size)
+		fmt.Println("删除19后获取树的所有元素的值（中序）：",b.InorderTraversal())
+	}else {
+		fmt.Println("树中不存在19")
+	}
 
-	isDelte := b.Delete(4)
-	fmt.Println(isDelte,b.GetMinNode())
+
+	if b.Delete(100){
+		fmt.Println("删除100后获取树的最小值结点",b.GetTreeMinNode())
+		fmt.Println("删除100后获取树的size",b.Size)
+		fmt.Println("删除100后获取树的所有元素的值（中序）：",b.InorderTraversal())
+	}else {
+		fmt.Println("树中不存在100")
+	}
+
+
 }

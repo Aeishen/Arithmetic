@@ -7,8 +7,6 @@
 
 package Tree
 
-import "fmt"
-
 type Object interface{}
 
 type Node struct {
@@ -20,36 +18,32 @@ type Node struct {
 type MyBintree struct {
 	Root *Node
 	Size int
-	CompareBig func(data1 Object,data2 Object)bool
+	CompareBig func(data1 Object,data2 Object)int
 }
 
-func NewMyBintree() *MyBintree{
+func NewMyBintree(root Object) *MyBintree{
 	var b MyBintree
-	b.Root = &Node{}
-	b.Size = 0
+	b.Root = &Node{root,nil,nil}
+	b.Size = 1
 	b.CompareBig = nil
 	return &b
 }
 
 // 查找元素
-func (b *MyBintree)Search(data Object) *Node{
+func (b *MyBintree)Search(data Object) bool{
 	if data == nil || b.Size == 0{
-		return nil
+		return false
 	}
-	if b.Root.Data == data {
-		return b.Root
-	}else{
-		return b.search(b.Root,data)
-	}
+	return b.search(b.Root,data) != nil
 }
 
-// 查找元素递归调用
+// 在以root为根节点的树中查找值为data元素是否存在
 func (b *MyBintree)search(root *Node, data Object) *Node{
 	if root == nil{
 		return nil
-	}else if root.Data == data{
+	}else if b.CompareBig(root.Data,data) == 0{
 		return root
-	}else if b.CompareBig(root.Data,data) {
+	}else if b.CompareBig(root.Data,data) == 1 {
 		return b.search(root.Left, data)
 	}else{
 		return b.search(root.Right, data)
@@ -72,13 +66,13 @@ func (b *MyBintree)Add(data Object) bool{
 	return true
 }
 
-// 添加元素递归调用
+// 将值为data的节点添加以root为根节点的树中
 func (b *MyBintree)add(root *Node, newNode *Node) *Node{
 	if root == nil{
 		root = newNode
 		return root
 	}
-	if b.CompareBig(root.Data,newNode.Data) {
+	if b.CompareBig(root.Data,newNode.Data) == 1 {
 		root.Left = b.add(root.Left, newNode)
 	}else{
 		root.Right = b.add(root.Right, newNode)
@@ -88,76 +82,101 @@ func (b *MyBintree)add(root *Node, newNode *Node) *Node{
 
 // 删除元素
 func (b *MyBintree)Delete(data Object) bool{
-	delNode := b.Search(data)                              //获取要删除的节点p
-	if delNode == nil{
+	if data == nil || !b.Search(data)  {
 		return false
 	}
-	if delNode.Left == nil && delNode.Right == nil{        //若删除的是叶子节点p
-		delNode = nil
-	}else if delNode.Left == nil || delNode.Right == nil{  //若删除的节点p只有左子树pL或右子树pR
-		if delNode.Left == nil{
-			fmt.Println("000",&delNode)
-			delNode = delNode.Right
-			fmt.Println("111",&delNode)
-		}else{
-			delNode = delNode.Left
-		}
-	}else{                                                     //若删除的节点p存在左子树pL和右子树pR
-		_,leftMaxNode:= b.findLimitValueNode(delNode.Left)     //取p的左子树中最大值的节点（取p的右子树中最小值的节点也可）
-		delNode.Data = leftMaxNode.Data
-		leftMaxNode = nil
-	}
+	b.Root = b.delete(b.Root,data)
+	b.Size --
 	return true
 }
 
-// 获取该树最大值节点
-func (b *MyBintree)GetMaxNode() *Node{
-	if b.Size == 0{
-		return nil
+// 删除以root为根节点的树中值为data的节点
+func (b *MyBintree)delete(root *Node, data Object)(*Node) {
+	if root == nil{
+		return root
 	}
-	_, maxNode := b.findLimitValueNode(b.Root)
-	return maxNode
-}
-
-// 获取该数最小值节点
-func (b *MyBintree)GetMinNode() *Node{
-	if b.Size == 0{
-		return nil
-	}
-	minNode, _ := b.findLimitValueNode(b.Root)
-	return minNode
-}
-
-//找某个节点下所有子节点的最小/大值的节点
-func (b *MyBintree)findLimitValueNode(root *Node)(*Node,*Node){
-	if root == nil {                                 // 该节点为nil
-		return nil,nil
-	}else if root.Left == nil && root.Right == nil{  // 该节点不存在左右子树
-		return root,root
-	}else{
-		minNode,maxNode  := root,root
-		if root.Left == nil {                        // 该节点存在右子树
-			for root.Right != nil{
-				maxNode = root.Right
-				root = root.Right
-			}
-		}else if root.Right == nil {                 // 该节点存在左子树
-			for root.Left != nil{
-				minNode = root.Left
-				root = root.Left
-			}
-		}else{                                       // 该节点同时存在左子树右子树
-			root_ := &Node{root.Data,root.Left,root.Right}  // 复制一份该节点，防止第一个for循环影响第二个for循环
-			for root.Left != nil{
-				minNode = root.Left
-				root = root.Left
-			}
-			for root_.Right != nil{
-				maxNode = root_.Right
-				root_ = root_.Right
-			}
+	compareResult := b.CompareBig(root.Data, data)
+	if compareResult == 1{
+		root.Left = b.delete(root.Left, data)
+	}else if compareResult == -1{
+		root.Right = b.delete(root.Right, data)
+	}else if compareResult == 0 {
+		if root.Right == nil && root.Left == nil {
+			root = nil
+		} else if root.Right == nil {
+			root = root.Left
+		} else if root.Left == nil {
+			root = root.Right
+		} else {
+			root.Data = b.getMaxNodeByNode(root.Left).Data
+			root.Left = b.delete(root.Left, root.Data)
 		}
-		fmt.Println("12",&minNode)
-		return minNode,maxNode
 	}
+	return root
+}
+
+// 获取该树最大值
+func (b *MyBintree)GetTreeMaxNode() *Node{
+	return b.getMaxNodeByNode(b.Root)
+}
+
+// 获取该树最小值
+func (b *MyBintree)GetTreeMinNode() *Node{
+	return b.getMinNodeByNode(b.Root)
+}
+
+//找到以root为根节点的树中最小值的节点
+func (b *MyBintree)getMinNodeByNode(root *Node) *Node{
+	for root.Left != nil{
+		root = root.Left
+	}
+	return root
+}
+
+//找到以root为根节点的树中最大值的节点
+func (b *MyBintree)getMaxNodeByNode(root *Node) *Node{
+	for root.Right != nil{
+		root = root.Right
+	}
+	return root
+}
+
+
+//获取以root为根节点的树中的所有节点的值
+func (b *MyBintree)getAllData(all []Object,root *Node,tag int) []Object{
+	//前序遍历：先访问当前节点，再依次递归访问左右子树
+	if root != nil && tag == -1{
+		all = append(all,root.Data)
+		all = b.getAllData(all,root.Left,-1)
+		all = b.getAllData(all,root.Right,-1)
+	}
+	//中序遍历：先递归访问左子树，再访问自身，再递归访问右子树
+	if root != nil && tag == 0{
+		all = b.getAllData(all,root.Left,0)
+		all = append(all,root.Data)
+		all = b.getAllData(all,root.Right,0)
+	}
+	//后序遍历：先递归访问左右子树，最后再访问当前节点。
+	if root != nil && tag == 1{
+		all = b.getAllData(all,root.Left,1)
+		all = b.getAllData(all,root.Right,1)
+		all = append(all,root.Data)
+	}
+	return all
+}
+
+
+//前序遍历
+func (b *MyBintree)PreorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,-1)
+}
+
+//中序遍历
+func (b *MyBintree)InorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,0)
+}
+
+//后序遍历
+func (b *MyBintree)PostorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,1)
 }
