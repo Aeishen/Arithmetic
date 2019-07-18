@@ -12,15 +12,28 @@ import (
 )
 
 func main() {
+
+	//// 测试createBintree -----------------------------------------
 	b := Tree.NewMyBintree(11)
 	b.CompareBig = func(data1 Tree.Object, data2 Tree.Object) int {
-		if data1.(int) >  data2.(int){
-			return 1
-		}else if data1.(int) <  data2.(int){
-			return -1
-		}else{
-			return 0
+		switch data2.(type) {
+		case float64:
+			v := float64(data1.(int)) - data2.(float64)
+			if v > 0{
+				return 1
+			}else if v < 0 {
+				return -1
+			}
+		case int:
+			if data1.(int) >  data2.(int){
+				return 1
+			}else if data1.(int) <  data2.(int){
+				return -1
+			}else{
+				return 0
+	        }
 		}
+		return 0
 	}
 
 	b.Add(10)
@@ -86,5 +99,6 @@ func main() {
 		fmt.Println("树中不存在100")
 	}
 
-
+	//// 测试searchClosest --------------------
+    fmt.Println(b.SearchClosestValue(b.Root,1100.6))
 }

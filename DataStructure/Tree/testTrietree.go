@@ -13,16 +13,17 @@ import (
 )
 
 func main() {
-	t := Tree.NewMyTrieTree()
 
+	//// test createTrieTree---------------------------
+	t := Tree.NewMyTrieTree()
 	t.Add("code")
-	t.Add("cook")
-	t.Add("five")
-	t.Add("file")
-	t.Add("fat")
-	t.Add("hi")
-	t.Add("player")
-	t.Add("play")
+	//t.Add("cook")
+	//t.Add("five")
+	//t.Add("file")
+	//t.Add("fat")
+	//t.Add("hi")
+	//t.Add("player")
+	//t.Add("play")
 
 	//// 使用Search查询存在的整个字符串
 	//fmt.Println(t.Search("code"))
@@ -40,23 +41,27 @@ func main() {
 	//fmt.Println(t.StartWith("cod"))
 	//fmt.Println(t.StartWith("fi"))
 	//fmt.Println(t.StartWith("h"))
-
-	//fmt.Println(t.Search("play"))
-	//fmt.Println(t.StartWith("play"))
-	//fmt.Println(t.Search("player"))
-	//fmt.Println(t.StartWith("player"))
-	//
-	//
-	////删除整个字符串
-	//t.Delete("play")
 	//
 	//fmt.Println(t.Search("play"))
 	//fmt.Println(t.StartWith("play"))
 	//fmt.Println(t.Search("player"))
 	//fmt.Println(t.StartWith("player"))
 
-	//删除整个字符串
-	t.Delete("hi")
-	fmt.Println(t.Search("hi"))
 
+	//// test stringFuzzySearch------------------------
+	t1 := Tree.NewMyStructure()
+	t1.AddWord("bad")
+	//t1.AddWord("dad")
+	//t1.AddWord("mab")
+	//t1.AddWord("mabdb")
+    //fmt.Println(t1.Search("pad"))
+	//fmt.Println(t1.Search("bad"))
+	//fmt.Println(t1.Search(".ad"))
+	//fmt.Println(t1.Search("b.."))
+	//fmt.Println(t1.Search(".."))
+	//fmt.Println(t1.Search(".a."))
+	//fmt.Println(t1.Search("...d."))
+	//fmt.Println(t1.Search(".a.d."))
+
+	fmt.Println(1-0.2)
 }
