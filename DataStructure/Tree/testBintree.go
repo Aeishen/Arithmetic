@@ -7,7 +7,7 @@
 package main
 
 import (
-	"./bintree"
+	"./binarySearchTree"
 	"fmt"
 )
 
@@ -59,11 +59,15 @@ func main() {
 	fmt.Println("获取树的所有元素的值（前序）：",b.PreorderTraversal())
 	fmt.Println("获取树的所有元素的值（中序）：",b.InorderTraversal())
 	fmt.Println("获取树的所有元素的值（后序）：",b.PostorderTraversal())
+	fmt.Println("获取树的所有元素的值（层次）：",b.LevelOrderTraversal())
 	fmt.Println("获取树的最大值结点",b.GetTreeMaxNode())
 	fmt.Println("获取树的最小值结点",b.GetTreeMinNode())
-
+	fmt.Println("获取树的深度",b.GetTreeDepth(b.Root))
+	fmt.Println("获取树第3层的元素个数",b.GetNodeCount(b.Root,3))
+	fmt.Println("获取树第4层的元素个数",b.GetNodeCount(b.Root,4))
 	fmt.Println("查询111是否存在于树中：",b.Search(111))
 	fmt.Println("查询15是否存在于树中：",b.Search(15))
+
 
 
 	if b.Delete(4){
@@ -73,6 +77,7 @@ func main() {
 	}else {
 		fmt.Println("树中不存在4")
 	}
+
 
 	if b.Delete(15){
 		fmt.Println("删除15后获取树的最小值结点",b.GetTreeMinNode())
@@ -98,7 +103,8 @@ func main() {
 	}else {
 		fmt.Println("树中不存在100")
 	}
-
+	fmt.Println("获取树的深度",b.GetTreeDepth(b.Root))
+	fmt.Println("获取树第4层的元素个数",b.GetNodeCount(b.Root,4))
 	//// 测试searchClosest --------------------
     fmt.Println(b.SearchClosestValue(b.Root,1100.6))
 }

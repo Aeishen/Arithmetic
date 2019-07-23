@@ -14,9 +14,10 @@ func getSum(arr []int) int {
 	if l == 1 {
 		return arr[0]
 	}else{
-		return getSum(arr[:l-1]) + arr[l - 1]
+		return getSum(arr[1:]) + arr[0]
 	}
 }
+
 
 func main() {
 	arr := []int{8,2,6,4,8,2,6,4,5,9}

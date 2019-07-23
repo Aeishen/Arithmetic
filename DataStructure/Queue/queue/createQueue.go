@@ -7,19 +7,8 @@ type ItemsQueue struct {
 }
 
 // 创建一个队列
-func (this ItemsQueue)new() *ItemsQueue {
-	this.Items = []item{}
-	return &this
-}
-
-// 初始化一个队列
-func InitQueue() *ItemsQueue {
-	var q ItemsQueue
-	if q.Items == nil{
-		q = ItemsQueue{}
-		q.new()
-	}
-	return &q
+func NewQueue() *ItemsQueue {
+	return &ItemsQueue{[]item{}}
 }
 
 //入队
@@ -28,8 +17,8 @@ func (this *ItemsQueue)Enqueue(i item){
 }
 
 //获取首元素
-func (this *ItemsQueue)GetFront() *item{
-	return &this.Items[0]
+func (this *ItemsQueue)GetFront() item{
+	return this.Items[0]
 }
 
 //出队

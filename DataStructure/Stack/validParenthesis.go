@@ -24,7 +24,7 @@ import (
 )
 
 func check(chars []byte) bool{
-	s := Stack.InitStack()
+	s := Stack.NewStack()
 	len_c := len(chars)
 	for i,v := range chars{
 		if v == '(' || v == '{' || v == '['{

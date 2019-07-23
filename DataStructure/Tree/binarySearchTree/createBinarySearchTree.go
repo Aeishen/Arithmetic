@@ -21,12 +21,12 @@ type MyBintree struct {
 	CompareBig func(data1 Object,data2 Object)int
 }
 
+func newNode(data Object) *Node{
+	return &Node{data,nil,nil}
+}
+
 func NewMyBintree(root Object) *MyBintree{
-	var b MyBintree
-	b.Root = &Node{root,nil,nil}
-	b.Size = 1
-	b.CompareBig = nil
-	return &b
+	return &MyBintree{newNode(root),1,nil}
 }
 
 // 查找元素
@@ -55,7 +55,7 @@ func (b *MyBintree)Add(data Object) bool{
 	if data == nil{
 		return false
 	}
-	newNode := &Node{data,nil,nil}
+	newNode := newNode(data)
 	if b.Size == 0{
 		b.Root = newNode
 	}else{
@@ -141,6 +141,20 @@ func (b *MyBintree)getMaxNodeByNode(root *Node) *Node{
 	return root
 }
 
+//前序遍历递归实现
+func (b *MyBintree)PreorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,-1)
+}
+
+//中序遍历递归实现
+func (b *MyBintree)InorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,0)
+}
+
+//后序遍历递归实现
+func (b *MyBintree)PostorderTraversal() (all []Object){
+	return b.getAllData(all,b.Root,1)
+}
 
 //获取以root为根节点的树中的所有节点的值
 func (b *MyBintree)getAllData(all []Object,root *Node,tag int) []Object{
@@ -162,21 +176,48 @@ func (b *MyBintree)getAllData(all []Object,root *Node,tag int) []Object{
 		all = b.getAllData(all,root.Right,1)
 		all = append(all,root.Data)
 	}
+
 	return all
 }
 
+//层次遍历（广度优先遍历）
+func (b *MyBintree)LevelOrderTraversal() (all []Object){
+	nodes := []*Node{b.Root}
 
-//前序遍历
-func (b *MyBintree)PreorderTraversal() (all []Object){
-	return b.getAllData(all,b.Root,-1)
+	for len(nodes) > 0{
+		curNode := nodes[0]
+		nodes = nodes[1:]
+		all = append(all,curNode.Data)
+		if curNode.Left != nil{
+			nodes = append(nodes,curNode.Left)
+		}
+		if curNode.Right != nil{
+			nodes = append(nodes,curNode.Right)
+		}
+	}
+	return
 }
 
-//中序遍历
-func (b *MyBintree)InorderTraversal() (all []Object){
-	return b.getAllData(all,b.Root,0)
+// 求树的深度
+func (b *MyBintree)GetTreeDepth(root *Node) int{
+	if root == nil {
+		return 0
+	}
+	countL := b.GetTreeDepth(root.Left) + 1
+	countR := b.GetTreeDepth(root.Right) + 1
+	if countL > countR{
+		return countL
+	}
+	return countR
 }
 
-//后序遍历
-func (b *MyBintree)PostorderTraversal() (all []Object){
-	return b.getAllData(all,b.Root,1)
+//获取树第k层的节点个数
+func (b *MyBintree)GetNodeCount(root *Node,k int) int{
+	if root == nil || k < 1 || k > b.GetTreeDepth(b.Root) {
+		return 0
+	}
+	if k == 1{
+		return 1
+	}
+	return b.GetNodeCount(root.Left,k-1) + b.GetNodeCount(root.Right,k-1)
 }

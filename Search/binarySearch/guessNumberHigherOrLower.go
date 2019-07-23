@@ -33,10 +33,13 @@ var pickNum int
 func guess(n int) int{
 	compareResult := n - pickNum
 	if compareResult < 0 {
+		fmt.Println("My number is lower")
 		return -1
 	}else if compareResult > 0 {
+		fmt.Println("My number is higher")
 		return 1
 	}else {
+		fmt.Println("Congrats! You got it")
 		return 0
 	}
 }

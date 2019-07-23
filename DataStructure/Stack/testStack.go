@@ -7,7 +7,7 @@ import (
 
 
 func main() {
-	test_stack := Stack.InitStack() //获取栈
+	test_stack := Stack.NewStack() //获取栈
 
 	fmt.Println("入栈前栈是否为空：",test_stack.IsEmpty()) //栈判空
 

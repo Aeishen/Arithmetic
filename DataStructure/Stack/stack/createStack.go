@@ -41,12 +41,7 @@ func (this *ItemStack)IsEmpty() bool{
 }
 
 // 栈的初始化
-func InitStack() *ItemStack{
-	var this ItemStack
-	if this.Items == nil{
-		this = ItemStack{}   //创建一个空结构体
-		this.new()
-	}
-	return &this
+func NewStack() *ItemStack{
+	return &ItemStack{[]Item{}}
 }
 

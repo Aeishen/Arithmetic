@@ -37,8 +37,8 @@ func pop(outStack *Stack.ItemStack,inStack *Stack.ItemStack) (i Stack.Item){
 }
 
 func main() {
-	inStack := Stack.InitStack()
-	outStack := Stack.InitStack()
+	inStack := Stack.NewStack()
+	outStack := Stack.NewStack()
 
 	for i := 1;i < 6; i++{
 		push(inStack,i)

@@ -23,7 +23,7 @@ import (
 func isPopOrder(pushSequence []int,popSequence []int) bool{
 	len_push := len(pushSequence)
 	len_pop := len(popSequence)
-	s := Stack.InitStack()
+	s := Stack.NewStack()
 
 	for pushIndex,popIndex := 0,0; pushIndex < len_push; pushIndex++ {
 		s.Push(pushSequence[pushIndex])

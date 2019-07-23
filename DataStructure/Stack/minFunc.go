@@ -23,8 +23,8 @@ type newStack struct {
 
 func initNewStack() *newStack {
 	ns := newStack{
-		Stack.InitStack(),
-		Stack.InitStack(),
+		Stack.NewStack(),
+		Stack.NewStack(),
 	}
 	return &ns
 }
