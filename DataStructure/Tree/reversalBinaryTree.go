@@ -24,7 +24,7 @@ import (
 )
 
 //创建二叉树
-func createTree() *Tree.MyBintree{
+func CreateTree() *Tree.MyBintree{
 	b := Tree.NewMyBintree(10)
 	b.CompareBig = func(data1 Tree.Object, data2 Tree.Object) int {
 		if data1.(int) > data2.(int) {
@@ -83,7 +83,7 @@ func reversal_unrec(root *Tree.Node) {
 }
 
 func main() {
-	b := createTree()
+	b := CreateTree()
 	fmt.Println(b.InorderTraversal())
 	reversalTree(b)
 	fmt.Println(b.InorderTraversal())
