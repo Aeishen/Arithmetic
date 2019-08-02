@@ -1,18 +1,22 @@
 /*
 @author : Aeishen
-@data :  19/07/24, 17:06
+@data :  19/07/18, 15:20
 
 @description :
 */
 
 /*
 题目：
-	判断两棵二叉树是否结构相同,不考虑数据内容。结构相同意味着对应的左子树和对应的右子树都结构相同。
+	Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+
+	Note:
+		 Given target value is a floating point.
+         You are guaranteed to have only one unique value in the BST that is closest to the target.
 */
 
 /*
 解题思路：
-     递归
+     找到最接近这个值的两个节点（父子节点），再比较哪个更加接近
 */
 
 package main

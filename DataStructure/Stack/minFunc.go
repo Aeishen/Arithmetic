@@ -13,7 +13,6 @@ package main
 
 import (
 	"./stack"
-	"fmt"
 )
 
 type newStack struct {
@@ -63,28 +62,29 @@ func (this *newStack)min() Stack.Item{
 }
 
 func main() {
-	n := initNewStack()
-	arr := []int{3,2,4,1,5}
-	for _,v := range arr{
-		n.push(v)
-	}
-	fmt.Println("所有元素入栈后：-----------")
-	fmt.Println("dataStack:",n.dataStack.Items)
-	fmt.Println("minStack:",n.minStack.Items)
-	fmt.Println("最小元素：",n.min())
-	fmt.Println("栈顶元素：",n.peek())
-
-	fmt.Println("\n第一次出栈后：-----------")
-	n.pop()
-	fmt.Println("dataStack:",n.dataStack.Items)
-	fmt.Println("minStack:",n.minStack.Items)
-	fmt.Println("最小元素：",n.min())
-	fmt.Println("栈顶元素：",n.peek())
-
-	fmt.Println("\n第二次出栈后：-----------")
-	n.pop()
-	fmt.Println("dataStack:",n.dataStack.Items)
-	fmt.Println("minStack:",n.minStack.Items)
-	fmt.Println("最小元素：",n.min())
-	fmt.Println("栈顶元素：",n.peek())
+	//n := initNewStack()
+	//arr := []int{3,2,4,1,5}
+	//for _,v := range arr{
+	//	n.push(v)
+	//}
+	//fmt.Println("所有元素入栈后：-----------")
+	//fmt.Println("dataStack:",n.dataStack.Items)
+	//fmt.Println("minStack:",n.minStack.Items)
+	//fmt.Println("最小元素：",n.min())
+	//fmt.Println("栈顶元素：",n.peek())
+	//
+	//fmt.Println("\n第一次出栈后：-----------")
+	//n.pop()
+	//fmt.Println("dataStack:",n.dataStack.Items)
+	//fmt.Println("minStack:",n.minStack.Items)
+	//fmt.Println("最小元素：",n.min())
+	//fmt.Println("栈顶元素：",n.peek())
+	//
+	//fmt.Println("\n第二次出栈后：-----------")
+	//n.pop()
+	//fmt.Println("dataStack:",n.dataStack.Items)
+	//fmt.Println("minStack:",n.minStack.Items)
+	//fmt.Println("最小元素：",n.min())
+	//fmt.Println("栈顶元素：",n.peek())
 }
+
