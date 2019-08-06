@@ -63,7 +63,7 @@ func lengthOfLongestSubstring(s string) (int ,[]byte){
 
 func check(s []byte,s_ byte)(bool,int){
 	for i,v:= range s{
-		if byte(v) == s_{
+		if v == s_{
 			return true,i
 		}
 	}
