@@ -28,8 +28,9 @@
 
 /*
 思路：
-	动态规划：爬上第n阶之前，只有两种可能，爬了一阶或者两阶，因此此时他总共可拥有的次数，即为他最后爬了一阶情况下原来n-1阶的次数加上最后爬了两阶时
-    原来n-2阶的次数。
+	动态规划：因为每次只能爬 1 或 2 个台阶。假设知道爬上 n - 1 阶的方法为 counts_1, 则从 n - 1 阶爬上 n 阶也是 counts_1 种方法
+            （每种方法都是爬 1 个台阶就可以到 n 阶）；假设知道爬上 n - 2 阶的方法为 counts_2, 则从 n - 2 阶爬上 n 阶也是 counts_2 种方法。
+			（每种方法都是爬 2 个台阶就可以到 n 阶）；所以爬上 n 阶总的方法有 counts_1 + counts_2 种
 */
 
 package main
@@ -41,19 +42,19 @@ func main() {
 }
 
 func climbStairs(n int) int {
-	count := 0
-	preCount := 2
-	prePreCount := 1
+	curCount := 0      // 爬上 n 阶的方法数
+	preCount := 2      // 爬上 n - 1 阶的方法数
+	prePreCount := 1   // 爬上 n - 2 阶的方法数
 	if n == 1 {
 		return prePreCount
 	}else if n == 2{
 		return preCount
 	}else if n > 2{
 		for i := 3;i<=n;i++{
-			count = preCount + prePreCount
+			curCount = preCount + prePreCount
 			prePreCount = preCount
-			preCount = count
+			preCount = curCount
 		}
 	}
-	return count
+	return curCount
 }
