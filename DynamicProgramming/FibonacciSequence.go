@@ -14,9 +14,9 @@
              整个方法因为没有递归的再调用，所以只被调用一次，从而大大减少了运行时间。时间复杂度为O(n)
 
 区别：
-	动态规划思想：将原问题拆分为若干子问题，自底向上的求解。其总是充分利用重叠子问题，即通过每个子问题只解一次，把解保存在一个表中，巧妙的避免了子问题的重复求解。
     递归方法：采用的是自顶向下的思想，拆分为若干子问题，但是造成了子问题的重复求解。
     备忘录方法：采用的也是自顶向下的思想，但是该方法维护了一个记录子问题解的表，虽然填表动作的控制结构更像递归方法，但是的确避免了子问题的重复求解。
+	动态规划思想：将原问题拆分为若干子问题，自底向上的求解。其总是充分利用重叠子问题，即通过每个子问题只解一次，把解保存在一个表中，巧妙的避免了子问题的重复求解。
 */
 
 package main
@@ -24,21 +24,31 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("fibonacci_Recursion",fibonacci_Recursion(20))
+	fmt.Println("fibonacci_Recursion1",fibonacci_Recursion1(20))
+	fmt.Println("fibonacci_Recursion2",fibonacci_Recursion2(20,0,1,1))
 	memo := make(map[int]int)
 	fmt.Println("fibonacci_Memo",fibonacci_Memo(20, memo))
 	fmt.Println("fibonacci_Dp",fibonacci_Dp(20))
 }
 
-func fibonacci_Recursion(n int) int {
-	if n > 0 {
-		if n <= 2{
-			return 1
-		}else{
-			return fibonacci_Recursion(n - 1) + fibonacci_Recursion(n - 2)
-		}
+
+// 递归1: 逆向求解会造成大量的重复计算, 时间复杂度：O((3/2)^n)
+func fibonacci_Recursion1(n int) int{
+	if n <= 2{
+		return 1    // 前两个
+	}else{
+		return fibonacci_Recursion1(n - 1) + fibonacci_Recursion1(n - 2)
 	}
-	return 0
+}
+
+// 递归2：正向向求解可以得到近似线性的效率
+func fibonacci_Recursion2(n int, preValue int, curValue int, curCount int) int{
+	if curCount == n{
+		return curValue  // 最后一个
+	}else{
+		curCount ++
+		return fibonacci_Recursion2(n, curValue, preValue + curValue, curCount)
+	}
 }
 
 func fibonacci_Memo(n int, memo map[int]int) int {
@@ -57,20 +67,16 @@ func fibonacci_Memo(n int, memo map[int]int) int {
 	return result
 }
 
+//
 func fibonacci_Dp(n int) int {
-	curResult := 0
-	prePreResult := 1
-	preResult := 1
+	curResult := 1
+	preResult := 0
 	if n > 0 {
-		if n <= 2{
-			curResult = 1
-		}else{
-			for i := 3;i <= n;i++{
-				curResult = prePreResult + preResult
-				prePreResult = preResult
-				preResult = curResult
-			}
+		for i := 1;i < n;i++{
+			curResult = curResult + preResult
+			preResult = curResult - preResult
 		}
+		return curResult
 	}
-	return curResult
+	return 0
 }
