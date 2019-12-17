@@ -17,6 +17,7 @@
 示例 2：
 	输入：["H","a","n","n","a","h"]
 	输出：["h","a","n","n","a","H"]
+
 */
 
 package main
@@ -26,16 +27,16 @@ import "fmt"
 func main() {
 	s := []byte{'q','w','e','t'}
 	fmt.Println(s)
-	reverseString(0,s)
+	reverseString1(0,s)
 	fmt.Println(s)
 }
 
-func reverseString(index int, s []byte){
+func reverseString1(index int, s []byte){
 	if len(s) <= 0 || (len(s) - 1) <= index * 2 {
 		return
 	}
 	s[index],s[len(s) - 1 - index] = s[len(s) - 1 - index],s[index]
-	reverseString(index + 1, s)
+	reverseString1(index + 1, s)
 }
 
 
