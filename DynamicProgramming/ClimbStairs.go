@@ -38,22 +38,18 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(climbStairs(5))
+	fmt.Println(climbStairs(10))
 }
 
 func climbStairs(n int) int {
-	curCount := 0      // 爬上 n 阶的方法数
-	preCount := 2      // 爬上 n - 1 阶的方法数
-	prePreCount := 1   // 爬上 n - 2 阶的方法数
-	if n == 1 {
-		return prePreCount
-	}else if n == 2{
-		return preCount
+	curCount := 2
+	preCount := 1
+	if 0< n && n < 3{
+		return n
 	}else if n > 2{
 		for i := 3;i<=n;i++{
-			curCount = preCount + prePreCount
-			prePreCount = preCount
-			preCount = curCount
+			curCount = preCount + curCount
+			preCount = curCount - preCount
 		}
 	}
 	return curCount

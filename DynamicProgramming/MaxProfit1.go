@@ -25,19 +25,25 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	prices := []int{7,1,5,3,6,4}
 	//prices := []int{1,2,3,4,5}
 	//prices := []int{2,2,5}
 	fmt.Println(maxProfit(prices))
+	fmt.Println(maxProfit1(prices))
+	fmt.Println(maxProfit1([]int{2,1,2,1,0,1,2}))
+
 }
 
 func maxProfit(prices []int) int {
 	maxProfit := 0
 	if len(prices)> 0{
-		minProfit := prices[0]
+		minProfit := prices[0]     // 买入的价格
 		for i:= 1;i < len(prices);i++{
 			if prices[i] < minProfit{
 				minProfit = prices[i]
@@ -47,6 +53,22 @@ func maxProfit(prices []int) int {
 			if prices[i] - minProfit > maxProfit{
 				maxProfit = prices[i] - minProfit
 			}
+		}
+	}
+	return maxProfit
+}
+
+func maxProfit1(prices []int) int {
+	if len(prices) == 0{
+		return 0
+	}
+	maxProfit := 0
+	minProfit := prices[0]
+	for i:=1;i<len(prices);i++{
+		if prices[i] > minProfit {
+			maxProfit = int(math.Max(float64(maxProfit) ,float64(prices[i] - minProfit)))
+		}else {
+			minProfit = prices[i]
 		}
 	}
 	return maxProfit
