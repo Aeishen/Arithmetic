@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="446935cd-81b3-4601-b6d7-ff70b8480705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DynamicProgramming/MaxProfit2.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sort/mergeSort.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProgramming/MaxProfit1.go" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProgramming/MaxProfit1.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IntOperation/MaxProfit2.go" beforeDir="false" afterPath="$PROJECT_DIR$/GreedyAlgorithm/MaxProfit3.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greedyAlgorithm/AboutGreedyAlgorithm.md" beforeDir="false" afterPath="$PROJECT_DIR$/GreedyAlgorithm/AboutGreedyAlgorithm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greedyAlgorithm/DistributionOfBiscuits.go" beforeDir="false" afterPath="$PROJECT_DIR$/GreedyAlgorithm/DistributionOfBiscuits.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/greedyAlgorithm/nonoverlappingInterval.go" beforeDir="false" afterPath="$PROJECT_DIR$/GreedyAlgorithm/nonoverlappingInterval.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +18,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="D:\Go" />
+  <component name="GOROOT" path="D:/Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -59,13 +54,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build DataStructure-Algorithm/DynamicProgramming (3)">
-    <configuration name="go build DataStructure-Algorithm/DynamicProgramming (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build DataStructure-Algorithm/Sort (1)">
+    <configuration name="go build DataStructure-Algorithm/DataStructure/List" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Arithmetic" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/DynamicProgramming/MaxProfit1.go" />
-      <package value="DataStructure-Algorithm/DynamicProgramming" />
+      <filePath value="$PROJECT_DIR$/DataStructure/List/testSingleList.go" />
+      <package value="DataStructure-Algorithm/DataStructure/List" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -87,31 +82,31 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build DataStructure-Algorithm/DynamicProgramming" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build DataStructure-Algorithm/Sort (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Arithmetic" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/DynamicProgramming/ClimbStairs.go" />
-      <package value="DataStructure-Algorithm/DynamicProgramming" />
+      <filePath value="$PROJECT_DIR$/Sort/mergeSort.go" />
+      <package value="DataStructure-Algorithm/Sort" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build DataStructure-Algorithm/IntOperation" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build DataStructure-Algorithm/Sort" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Arithmetic" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/IntOperation/MaxProfit.go" />
-      <package value="DataStructure-Algorithm/IntOperation" />
+      <filePath value="$PROJECT_DIR$/Sort/bubbleSort.go" />
+      <package value="DataStructure-Algorithm/Sort" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build DataStructure-Algorithm/Sort (1)" />
+        <item itemvalue="Go Build.go build DataStructure-Algorithm/DataStructure/List" />
+        <item itemvalue="Go Build.go build DataStructure-Algorithm/Sort" />
         <item itemvalue="Go Build.go build DataStructure-Algorithm/DynamicProgramming (3)" />
         <item itemvalue="Go Build.go build DataStructure-Algorithm/DynamicProgramming (2)" />
-        <item itemvalue="Go Build.go build DataStructure-Algorithm/DynamicProgramming (1)" />
-        <item itemvalue="Go Build.go build DataStructure-Algorithm/IntOperation" />
-        <item itemvalue="Go Build.go build DataStructure-Algorithm/DynamicProgramming" />
       </list>
     </recent_temporary>
   </component>
