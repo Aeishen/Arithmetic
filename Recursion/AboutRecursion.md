@@ -63,7 +63,7 @@
 
 下面的插图给出了一个 5 行的帕斯卡三角：
 
-![](C:\Users\AeishenLin\go\src\Github\Arithmetic\Recursion\algorithmAnim\Pascal'sTriangle\PascalTriangleAnimated2.gif)
+![](assets/PascalTriangleAnimated2.gif)
 
 **递推关系**：
 
@@ -129,7 +129,7 @@ func Fib_recursion(n int) int{
 
 下面的树显示了在计算 F(4) 时发生的所有重复计算（按颜色分组）
 
-![](C:\Users\AeishenLin\go\src\Github\Arithmetic\Recursion\algorithmAnim\fibonacci.png)
+![](assets/fibonacci-1577173075222.png)
 
 **记忆化（memoization）**
 
@@ -232,7 +232,7 @@ printReverse(str) = printReverse(str[1...n]) + print(str[0])
 
 为了更好地说明这一点，接下来我们将会展示递归调用f(x1) -> f(x2) -> f(x3) 的执行顺序以及栈空间的分配情况。
 
-![](C:\Users\AeishenLin\go\src\Github\Arithmetic\Recursion\algorithmAnim\card_recursion_stack.png)
+![](assets/card_recursion_stack.png)
 
 栈中的空间将会分配给 f(x1) 来调用 f(x2) 。类似的情况也同样发生在 f(x2) 中，系统会为 f(x3) 的调用分配另一个空间，最后在f(x3)中，我们到达基本情况，因此在 f(x3)中没有进行进一步的递归调用。
 
@@ -262,7 +262,7 @@ printReverse(str) = printReverse(str[1...n]) + print(str[0])
 
 例如，对于递归调用序列` f(x1) -> f(x2) -> f(x3)`，如果函数 `f(x)` 以尾递归的形式实现。那么其执行步骤的顺序和栈空间的分配如下所示：
 
-![](C:\Users\AeishenLin\go\src\Github\Arithmetic\Recursion\algorithmAnim\card_recursion_tail.png)
+![](assets/card_recursion_tail.png)
 
 请注意，在尾递归的情况下，一旦从递归调用返回，我们也会立即返回，因此我们可以跳过整个递归调用返回链，直接返回到原始调用方。这意味着我们根本不需要所有递归调用的调用栈，这为我们节省了空间。
 
