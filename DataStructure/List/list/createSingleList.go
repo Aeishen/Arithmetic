@@ -29,6 +29,15 @@ func InitList() *MyList{
 	return &l
 }
 
+//创建一个链表
+func CreateList(arr []int) *MyList{
+	l := InitList()
+	for _,v:= range arr{
+		l.Add(v)
+	}
+	return l
+}
+
 
 // 添加元素
 func (this *MyList)Add(data Object) bool{
